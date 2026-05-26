@@ -1,8 +1,21 @@
-# Lab Radar
+# Lab-Radar
 
-Lab Radar is a RAG-based academic advisor matching engine. It helps students find suitable research supervisors by matching a statement of purpose (SOP) against professor and laboratory research profiles.
+Lab-Radar is a scalable RAG-based academic advisor matching engine. It helps prospective students match a statement of purpose (SOP) with relevant professors, laboratories, and research groups.
 
-The project is currently in Phase 0: repository initialization and architecture design.
+The initial proof of concept focuses on Japanese university data, where professor pages, laboratory websites, and PDF publications are often highly unstandardized. The architecture is modular so the data pipeline can later expand to other regions and languages.
+
+## Current Status
+
+The repository is in Phase 0: project initialization and architecture design.
+
+This scaffold provides:
+
+- FastAPI application entry point
+- Pydantic schemas for professors, SOP documents, and match results
+- Placeholder recommendation API boundary
+- Environment variable template
+- CI workflow for linting and tests
+- Initial directories for crawler, embedding, and frontend work
 
 ## Workflow
 
@@ -45,11 +58,12 @@ tests/            backend tests
 
 ## Tech Stack
 
-- Backend: FastAPI, Pydantic
-- Data collection: Scrapy, BeautifulSoup
+- AI and NLP: OpenAI API or open-source LLMs
 - Embeddings: OpenAI embeddings or Sentence Transformers
 - Vector database: Qdrant by default, ChromaDB as an alternative
 - Reranking: Cohere Rerank or open-source cross-encoder models
+- Backend: FastAPI, Pydantic
+- Data engineering: Scrapy, BeautifulSoup, Pandas
 - Evaluation: Ragas and custom matching metrics
 - Deployment: Docker and Docker Compose in later phases
 
@@ -67,16 +81,16 @@ Then open `http://127.0.0.1:8000/docs`.
 
 Copy `.env.example` to `.env` and fill in provider credentials before connecting live services.
 
-## Current Phase 0 Tasks
+## Validation
 
-- [x] Repository structure
-- [x] Initial technology choices
-- [x] Core Pydantic data models
-- [x] FastAPI API skeleton
-- [x] Environment configuration template
-- [x] Basic CI workflow
-- [ ] Production crawler implementation
-- [ ] Embedding pipeline implementation
-- [ ] Vector database deployment
-- [ ] Reranker integration
-- [ ] Frontend application
+```powershell
+.\.venv\Scripts\python.exe -m ruff check .
+.\.venv\Scripts\python.exe -m pytest
+```
+
+## Roadmap
+
+- [x] Phase 0: Project initialization and architecture design
+- [ ] Phase 1: Japanese university MVP data ingestion and basic retrieval
+- [ ] Phase 2: Reranking, hybrid retrieval, and automated RAG evaluation
+- [ ] Phase 3: Frontend deployment, authentication, feedback, and global expansion
