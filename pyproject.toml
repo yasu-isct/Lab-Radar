@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lab-radar"
+version = "0.1.0"
+description = "RAG-based academic advisor matching engine."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.111.0",
+    "pydantic-settings>=2.2.1",
+    "uvicorn[standard]>=0.30.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx>=0.27.0",
+    "pytest>=8.2.0",
+    "ruff>=0.5.0",
+]
+crawler = [
+    "beautifulsoup4>=4.12.0",
+    "pypdf>=4.2.0",
+    "scrapy>=2.11.0",
+]
+embedding = [
+    "qdrant-client>=1.9.0",
+    "chromadb>=0.5.0",
+    "sentence-transformers>=3.0.0",
+]
+evaluation = [
+    "ragas>=0.1.9",
+]
+
+[tool.setuptools.packages.find]
+include = ["backend*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
